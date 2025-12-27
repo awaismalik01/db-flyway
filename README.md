@@ -10,10 +10,11 @@ Add the following step to your workflow:
 - name: Run Flyway Migration
   uses: awaismalik01/db-flyway@main
   with:
-    db-url: 'jdbc:postgresql://your-host:5432/your-db'
-    db-user: 'your-username'
-    db-password: 'your-password'
-    migration-path: './path/to/migrations'  # Path to your migration scripts
+    db-url: "jdbc:postgresql://your-host:5432/your-db"
+    db-user: "your-username"
+    db-password: "your-password"
+    migration-path: "./path/to/migrations" # Optional, defaults to 'sql'
+    schema: "your_schema" # Optional, defaults to 'public'
 ```
 
 ## Inputs
@@ -21,7 +22,8 @@ Add the following step to your workflow:
 - `db-url`: Database JDBC URL (required)
 - `db-user`: Database username (required)
 - `db-password`: Database password (required)
-- `migration-path`: Path to migration scripts in your repository (required)
+- `migration-path`: Path to migration scripts in your repository (optional, default: 'sql')
+- `schema`: Database schema for migrations and Flyway history table (optional, default: 'public')
 
 ## Notes
 
