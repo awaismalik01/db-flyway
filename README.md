@@ -8,7 +8,7 @@ Add the following step to your workflow:
 
 ```yaml
 - name: Run Flyway Migration
-  uses: awaismalik01/db-flyway@main
+  uses: awaismalik01/db-flyway@v1
   with:
     db-url: "jdbc:postgresql://your-host:5432/your-db"
     db-user: "your-username"
