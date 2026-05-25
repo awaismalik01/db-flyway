@@ -1,15 +1,6 @@
 name: "Flyway PostgreSQL Migration"
 description: "Run Flyway database migrations for PostgreSQL"
 inputs:
-  db-url:
-    description: "Database JDBC URL"
-    required: true
-  db-user:
-    description: "Database username"
-    required: true
-  db-password:
-    description: "Database password"
-    required: true
   migration-path:
     description: "Path to migration scripts"
     required: true
@@ -26,16 +17,12 @@ runs:
         mv flyway-9.22.3 flyway
       shell: bash
 
-    - name: Create Flyway config
-      run: ./flyway/flyway migrate
-      env:
-        FLYWAY_URL: ${{ inputs.db-url }}
-        FLYWAY_USER: ${{ inputs.db-user }}
-        FLYWAY_PASSWORD: ${{ inputs.db-password }}
-        FLYWAY_LOCATIONS: filesystem:${{ inputs.migration-path }}
-        FLYWAY_SCHEMAS: ${{ inputs.schema }}
-      shell: bash
-
     - name: Run Flyway migrate
       run: ./flyway/flyway migrate
+      env:
+        FLYWAY_URL: ${{ env.DATABASE_URL }}
+        FLYWAY_USER: ${{ env.FLYWAY_USER }}
+        FLYWAY_PASSWORD: ${{ env.FLYWAY_PASSWORD }}
+        FLYWAY_LOCATIONS: filesystem:${{ inputs.migration-path }}
+        FLYWAY_SCHEMAS: ${{ inputs.schema }}
       shell: bash
