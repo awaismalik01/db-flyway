@@ -20,11 +20,9 @@ runs:
     - name: Run Flyway migrate
       run: ./flyway/flyway migrate
       env:
-        FLYWAY_URL: ${{ env.DATABASE_URL }}
+        FLYWAY_URL: ${{ env.FLYWAY_URL }}
         FLYWAY_USER: ${{ env.FLYWAY_USER }}
         FLYWAY_PASSWORD: ${{ env.FLYWAY_PASSWORD }}
         FLYWAY_LOCATIONS: filesystem:${{ inputs.migration-path }}
         FLYWAY_SCHEMAS: ${{ inputs.schema }}
-        FLYWAY_LOG_LEVEL: warn
-        FLYWAY_CLEAN_DISABLED: true
       shell: bash
